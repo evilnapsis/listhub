@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Usando Legobox 3</title>
+<title>ListHub | To-do List Administration</title>
 <link rel="stylesheet" type="text/css" href="res/bootstrap3/css/bootstrap-yeti.min.css">
 <script type="text/javascript" src="res/jquery.min.js"></script>
 </head>
