@@ -5,7 +5,7 @@ $user = UserData::getById(Session::getUID());
 	<div class="col-md-3">
 	<h4><?php echo $user->name; ?> <?php echo $user->lastname; ?></h4>
 	<ul type="none">
-		<li><a id="showdesktop">Escritorio</a> </li>
+		<li><a id="showdesktopbtn">Escritorio</a> </li>
 			<li><a id="shownewproject"><i class="glyphicon glyphicon-plus-sign"></i> Nuevo Proyecto</a> </li>
 <br><div id="divnewproject">
 	<div class="panel panel-primary">
@@ -64,8 +64,19 @@ function loadprojects(){
 					loadprojects();
 				});		
 	});
+$("#showdesktopbtn").click(function(){
+				$.post("loaddesktop.php",null, function(data){
+					console.log(data);
+					$("div#task-container").html(data);
+				});	
+
+});
+
 
 	loadprojects();
+
+
+
 </script>
 	</div>
 	<div class="col-md-9">

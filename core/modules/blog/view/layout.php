@@ -3,6 +3,11 @@
 <title>ListHub | To-do List Administration</title>
 <link rel="stylesheet" type="text/css" href="res/bootstrap3/css/bootstrap-yeti.min.css">
 <script type="text/javascript" src="res/jquery.min.js"></script>
+  <script src="morris/raphael-min.js"></script>
+  <script src="morris/morris.js"></script>
+  <link rel="stylesheet" href="morris/morris.css">
+  <link rel="stylesheet" href="morris/example.css">
+
 </head>
 
 <body>

@@ -69,6 +69,47 @@ class TaskData {
 		return $found;
 	}
 
+
+	public static function countNews(){
+		$sql = "select count(*) as c from ".self::$tablename." where  date(created_at)=date(NOW())";
+		$query = Executor::doit($sql);
+		$found = null;
+		$data = new TaskData();
+		while($r = $query[0]->fetch_array()){
+			$data->c = $r['c'];
+			$found = $data;
+			break;
+		}
+		return $found;
+	}
+
+	public static function countNewsFinalizeds(){
+		$sql = "select count(*) as c from ".self::$tablename." where  date(is_finished_at)=date(NOW())";
+		$query = Executor::doit($sql);
+		$found = null;
+		$data = new TaskData();
+		while($r = $query[0]->fetch_array()){
+			$data->c = $r['c'];
+			$found = $data;
+			break;
+		}
+		return $found;
+	}
+
+	public static function countFinishedFromDay($day){
+		$sql = "select count(*) as c from ".self::$tablename." where  date(is_finished_at)=\"$day\"";
+		$query = Executor::doit($sql);
+		$found = null;
+		$data = new TaskData();
+		while($r = $query[0]->fetch_array()){
+			$data->c = $r['c'];
+			$found = $data;
+			break;
+		}
+		return $found->c;
+	}
+
+
 	public static function countAllByProjectId($project_id){
 		$sql = "select count(*) as q from ".self::$tablename." where project_id=$project_id";
 		$query = Executor::doit($sql);
