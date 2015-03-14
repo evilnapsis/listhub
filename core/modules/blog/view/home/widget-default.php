@@ -4,6 +4,9 @@ $user = UserData::getById(Session::getUID());
 <div class="row">
 	<div class="col-md-3">
 	<h4><?php echo $user->name; ?> <?php echo $user->lastname; ?></h4>
+	<ul type="none">
+		<li><a id="showdesktop">Escritorio</a> </li>
+	</ul>
 <hr>
 		<div id="project-list"></div>
 

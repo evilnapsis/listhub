@@ -43,7 +43,25 @@ print "<h2>".$project->name."</h2>";
 	});
 </script>
 
-<a href="#" id="shownewtask"><i class="glyphicon glyphicon-plus-sign"></i> Nueva Tarea</a>
+<div class="btn-toolbar">
+<div class="btn-group">
+<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-plus-sign"></i> Nueva Tarea</a>
+</div>
+<div class="btn-group">
+<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-user"></i> Usuarios</a>
+</div>
+<div class="btn-group">
+<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-tags"></i> Etiquetas</a>
+</div>
+<div class="btn-group">
+<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-bar-chart"></i> Analiticas</a>
+</div>
+<div class="btn-group">
+<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-cog"></i> Administrar</a>
+</div>
+
+</div>
+
 <br><br><div id="divnewtask">
 	<div class="panel panel-default">
 	<div class="panel-heading">Nueva Tarea</div>
