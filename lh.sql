@@ -57,6 +57,14 @@ create table task (
 create table tag(
 	id int not null auto_increment primary key,
 	name varchar(200) not null,
+	project_id int not null,
 	created_at datetime not null,
 	foreign key (project_id) references project(id)
+);
+
+create table task_tag(
+	task_id int not null,
+	tag_id int not null,
+	foreign key (task_id) references task(id),
+	foreign key (tag_id) references tag(id)
 );

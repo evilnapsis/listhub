@@ -9,6 +9,8 @@ include "core/controller/Session.php";
 include "core/modules/blog/model/ProjectData.php";
 include "core/modules/blog/model/PriorityData.php";
 include "core/modules/blog/model/TaskData.php";
+include "core/modules/blog/model/TagData.php";
+include "core/modules/blog/model/TaskTagData.php";
 
 $_SESSION["last_selected"] = $_POST["project_id"];
 
@@ -36,10 +38,18 @@ foreach ($projects as $project) {
 	if($project->is_finish){
 		$checked = "checked";
 	}
+$tags_str = "";
+$tags = TaskTagData::getAllByTaskId($project->id);
+foreach($tags as $t){
+$tags_str.= "<span class='label label-default'><i class='fa fa-tag'></i> ".$t->getTag()->name."</span>";
+}
+
  echo "<li class='task'>
 <span class='pull-right'>$priority->name</span>
- <span href='#' class='checkbox task'><label>"."<input type='checkbox' $checked id='check-".$project->id."'>".$project->name."</label></span>
-<div class='task-menu'><a href='' class='btn btn-default btn-sm'><i class='glyphicon glyphicon-edit'></i></a> <a href='#' id='delete-$project->id' class='btn btn-default btn-sm'><i class='glyphicon glyphicon-trash'></i></a></div>
+ <span href='#' class='checkbox task'><label>"."<input type='checkbox' $checked id='check-".$project->id."'>".$project->name."</label>
+$tags_str
+ </span>
+ <div class='task-menu'><a href='' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a> <a href='#' id='delete-$project->id' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></div>
 </li>";
 $project_id = $project->id;
 echo <<<SSS
@@ -49,7 +59,8 @@ $("#check-$project_id").change(function(){
 	var action = "start";
 	if(r==true){ action="finish"; }
 				$.post("taskaction.php","action="+action+"&task_id=$project_id", function(data){
-					console.log(data);
+//					console.log(data);
+						loadtasks();
 				});		
 
 
@@ -58,7 +69,7 @@ $("#delete-$project_id").click(function(e){
 		e.preventDefault();
 				$.post("taskaction.php","action=delete&task_id=$project_id", function(data){
 						//alert(data);
-						console.log($(this));
+//						console.log(data);
 						loadtasks();
 				});
 });

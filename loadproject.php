@@ -87,7 +87,6 @@ print "<h2>".$project->name."</h2>";
 </div>
 </div>
   </div>
-
 <div class="row">
 	<div class="col-md-6">
 	<button type="submit" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok-sign"></i></button>
@@ -100,6 +99,7 @@ print "<h2>".$project->name."</h2>";
 </div>
 </div>
 </div>
+
 <div id="task-list"></div>
 <script>
 	$("#divnewtask").hide();
@@ -137,6 +137,7 @@ function loadtasksq(q){
 				console.log(formInput);
 				$.post("newtask.php",formInput, function(data){
 					$('#divnewtasks').fadeOut("fast");
+					$('#ntdata').html(data);
 					loadtasks();
 					$("input[type=text]").each(function(){ $(this).val(""); });
 					$("#divnewtask").hide();
