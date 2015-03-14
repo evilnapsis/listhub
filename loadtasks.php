@@ -15,10 +15,17 @@ include "core/modules/blog/model/TaskTagData.php";
 $_SESSION["last_selected"] = $_POST["project_id"];
 
 if(!isset($_POST["q"])){
+if(!isset($_POST["archive"])){
 $projects = TaskData::getAllByProjectId($_POST["project_id"]);
 }else{
-$projects = TaskData::getLikeByProjectId($_POST["project_id"],$_POST["q"]);	
+$projects = TaskData::getArchivedByProjectId($_POST["project_id"]);	
 }
+
+}else{
+$projects = TaskData::getLikeByProjectId($_POST["project_id"],$_POST["q"]);	
+
+}
+
 // $all = TaskData::countAllByProjectId($project->id);
 $finished = TaskData::countFinishedByProjectId($_POST["project_id"]);
 $unfinished = TaskData::countUnFinishedByProjectId($_POST["project_id"]);

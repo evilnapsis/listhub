@@ -9,6 +9,7 @@ include "core/modules/blog/model/ProjectData.php";
 include "core/modules/blog/model/PriorityData.php";
 include "core/modules/blog/model/TaskData.php";
 
+
 $project = ProjectData::getById($_POST["id"]);
 
 ?>
@@ -48,20 +49,31 @@ print "<h2>".$project->name."</h2>";
 <a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-plus-sign"></i> Nueva Tarea</a>
 </div>
 <div class="btn-group">
-<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-folder-open"></i> Archivo</a>
+<a href="javascript:void()" class="btn btn-default btn-xs" id="showtasks"><i class="glyphicon glyphicon-th-list"></i> Tareas</a>
 </div>
 <div class="btn-group">
-<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-user"></i> Usuarios</a>
+<a href="javascript:void()" class="btn btn-default btn-xs" id="showarchive"><i class="glyphicon glyphicon-folder-open"></i> Archivo</a>
 </div>
 <div class="btn-group">
 <a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-tags"></i> Etiquetas</a>
 </div>
+
 <div class="btn-group">
-<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-bar-chart"></i> Analiticas</a>
-</div>
+
 <div class="btn-group">
-<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-cog"></i> Administrar</a>
+  <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+    <i class="glyphicon glyphicon-align-justify"></i> Opciones <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+<li><a href="#" id="shownewtask"><i class="glyphicon glyphicon-user"></i> Usuarios</a></li>
+<li><a href="#" id="shownewtask"><i class="glyphicon glyphicon-signal"></i> Analiticas</a></li>
+<li><a href="#" id="shownewtask"><i class="glyphicon glyphicon-cog"></i> Administrar</a></li>
+  </ul>
 </div>
+
+</div>
+
+
 
 </div>
 
@@ -125,6 +137,15 @@ function loadtasks(){
 				});	
 			}
 
+function loadarchivedtasks(){
+				$.post("loadtasks.php","project_id=<?php echo $project->id; ?>&archive=1", function(data){
+				//	console.log(data);
+					$("div#task-list").html(data);
+//					document.getElementById("task-list").innerHTML=data;
+				});	
+			}
+
+
 function loadtasksq(q){
 				$.post("loadtasks.php",q, function(data){
 				//	console.log(data);
@@ -157,3 +178,15 @@ function loadtasksq(q){
     }
   );
   </script>
+<script>
+$("#showarchive").click(function(){
+	loadarchivedtasks();
+
+});
+
+$("#showtasks").click(function(){
+	loadtasks();
+
+});
+
+</script>

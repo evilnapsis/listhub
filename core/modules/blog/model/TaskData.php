@@ -145,6 +145,26 @@ class TaskData {
 		return $array;
 	}
 
+	public static function getArchivedByProjectId($project_id){
+		$sql = "select * from ".self::$tablename." where project_id=$project_id and is_archived=1 order by priority_id desc,created_at desc;";
+		$query = Executor::doit($sql);
+		$array = array();
+		$cnt = 0;
+		while($r = $query[0]->fetch_array()){
+			$array[$cnt] = new ProjectData();
+			$array[$cnt]->id = $r['id'];
+			$array[$cnt]->name = $r['name'];
+			$array[$cnt]->description = $r['description'];
+			$array[$cnt]->project_id = $r['project_id'];
+			$array[$cnt]->priority_id = $r['priority_id'];
+			$array[$cnt]->created_at = $r['created_at'];
+			$array[$cnt]->is_finish = $r['is_finish'];
+			$cnt++;
+		}
+		return $array;
+	}
+
+
 	public static function getLikeByProjectId($project_id,$like){
 		$sql = "select * from ".self::$tablename." where project_id=$project_id and name like '%$like%' order by priority_id desc,created_at desc;";
 		$query = Executor::doit($sql);
