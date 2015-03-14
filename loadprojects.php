@@ -17,9 +17,10 @@ $last = ProjectData::getLast();
 
 // print_r($last);
 if(count($projects)>0){
-echo "<ul type='none'>";
+//echo "<ul type='none'>";
+echo "<div class='list-group'>";
 foreach ($projects as $project) {
- echo "<li><a id='loadproject-".$project->id."' href='#'>".$project->name."</a></li>";
+ echo "<a id='loadproject-".$project->id."' href='#' class='list-group-item'>".$project->name."</a>";
 $project_id = $project->id;
 echo <<<SSS
 <script>
@@ -34,7 +35,8 @@ $("#loadproject-$project_id").click(function(e){
 </script>
 SSS;
 }
-echo "</ul>";
+//echo "</ul>";
+echo "</div>";
 }
 // print_r($_GET);
 
