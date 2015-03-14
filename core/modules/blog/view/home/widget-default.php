@@ -6,12 +6,6 @@ $user = UserData::getById(Session::getUID());
 	<h4><?php echo $user->name; ?> <?php echo $user->lastname; ?></h4>
 	<ul type="none">
 		<li><a id="showdesktop">Escritorio</a> </li>
-	</ul>
-<hr>
-		<div id="project-list"></div>
-
-		<ul type="none">
-
 			<li><a id="shownewproject"><i class="glyphicon glyphicon-plus-sign"></i> Nuevo Proyecto</a> </li>
 <br><div id="divnewproject">
 	<div class="panel panel-primary">
@@ -29,6 +23,20 @@ $user = UserData::getById(Session::getUID());
 </div>
   
 </form>
+</div>
+</div>
+
+</div>
+	</ul>
+<hr>
+		<div id="project-list"></div>
+
+		<ul type="none">
+
+		</ul>
+
+
+
 <script>
 	$("#divnewproject").hide();
 
@@ -59,11 +67,6 @@ function loadprojects(){
 
 	loadprojects();
 </script>
-</div>
-</div>
-
-</div>
-		</ul>
 	</div>
 	<div class="col-md-9">
 		<div id="task-container"></div>
