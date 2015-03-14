@@ -53,3 +53,10 @@ create table task (
 	foreign key (project_id) references project(id),
 	foreign key (priority_id) references priority(id)
 );
+
+create table tag(
+	id int not null auto_increment primary key,
+	name varchar(200) not null,
+	created_at datetime not null,
+	foreign key (project_id) references project(id)
+);
