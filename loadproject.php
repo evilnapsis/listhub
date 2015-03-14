@@ -48,6 +48,9 @@ print "<h2>".$project->name."</h2>";
 <a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-plus-sign"></i> Nueva Tarea</a>
 </div>
 <div class="btn-group">
+<a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-folder-open"></i> Archivo</a>
+</div>
+<div class="btn-group">
 <a href="#" class="btn btn-default btn-xs" id="shownewtask"><i class="glyphicon glyphicon-user"></i> Usuarios</a>
 </div>
 <div class="btn-group">

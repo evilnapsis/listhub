@@ -21,11 +21,11 @@ $task->start();
 else if($_POST["action"]=="delete"){
 TaskTagData::delByTaskId($_POST["task_id"]);
 $task = TaskData::getById($_POST["task_id"]);
-
-
-
-
 $task->del();
+}
+else if($_POST["action"]=="archive"){
+$task = TaskData::getById($_POST["task_id"]);
+$task->archive();
 }
 
 }

@@ -45,7 +45,12 @@ $tags_str.= "<span class='label label-default'><i class='fa fa-tag'></i> ".$t->g
 }
 
 $project_id = $project->id;
- echo "<li class='task'>
+$archive = "";
+if($project->is_finish){
+	$archive.=" <a href='javascript:void()' id='archive-$project->id' class='btn btn-default btn-xs tip' title='Archivar'><i class='glyphicon glyphicon-folder-close'></i></a>";
+}
+ echo "<li class='task' id='task-$project_id'>
+
 <span class='pull-right'>$priority->name</span>
  <span href='#' class='checkbox task'><label>"."<input type='checkbox' $checked id='check-".$project->id."'>".$project->name."</label>
 $tags_str
@@ -53,7 +58,8 @@ $tags_str
  <div class='task-menu'>
  <a href='javascript:void()' id='activity-$project->id' class='btn btn-default btn-xs tip' title='Actividad'><i class='glyphicon glyphicon-comment'></i></a>
  <a href='javascript:void()' id='edit-$project->id' class='btn btn-default btn-xs tip' title='Editar'><i class='glyphicon glyphicon-edit'></i></a>
- <a href='javascript:void()' id='archive-$project->id' class='btn btn-default btn-xs tip' title='Archivar'><i class='glyphicon glyphicon-folder-close'></i></a>
+
+$archive
  <a href='javascript:void()' id='delete-$project->id' class='btn btn-default btn-xs tip' title='Eliminar'><i class='glyphicon glyphicon-trash'></i></a>
  </div>
  <div id='edittaskform-$project_id'></div>
@@ -86,6 +92,13 @@ $("#delete-$project_id").click(function(e){
 						loadtasks();
 				});
 });
+$("#archive-$project_id").click(function(e){
+		e.preventDefault();
+				$.post("taskaction.php","action=archive&task_id=$project_id", function(data){
+					$("#task-$project_id").hide();
+				});
+});
+
 
 </script>
 

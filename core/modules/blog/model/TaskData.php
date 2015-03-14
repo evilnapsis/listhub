@@ -33,6 +33,11 @@ class TaskData {
 		Executor::doit($sql);
 	}
 
+	public function archive(){
+		$sql = "update ".self::$tablename." set is_archived=1 where id=$this->id";
+		Executor::doit($sql);
+	}
+
 
 	public function finish(){
 		$sql = "update ".self::$tablename." set is_finish=1,is_finished_at=NOW() where id=$this->id";
@@ -122,7 +127,7 @@ class TaskData {
 	}
 
 	public static function getAllByProjectId($project_id){
-		$sql = "select * from ".self::$tablename." where project_id=$project_id order by priority_id desc,created_at desc;";
+		$sql = "select * from ".self::$tablename." where project_id=$project_id and is_archived=0 order by priority_id desc,created_at desc;";
 		$query = Executor::doit($sql);
 		$array = array();
 		$cnt = 0;
