@@ -146,3 +146,11 @@ function loadtasksq(q){
 
 	loadtasks();
 </script>
+<script type="text/javascript">
+  $(document).ready(
+    function()
+    {
+      $('.tip').tooltip();
+    }
+  );
+  </script>

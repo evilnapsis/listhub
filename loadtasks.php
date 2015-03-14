@@ -50,7 +50,12 @@ $project_id = $project->id;
  <span href='#' class='checkbox task'><label>"."<input type='checkbox' $checked id='check-".$project->id."'>".$project->name."</label>
 $tags_str
  </span>
- <div class='task-menu'><a href='javascript:void()' id='edit-$project->id' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a> <a href='jsvascript:void()' id='delete-$project->id' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></div>
+ <div class='task-menu'>
+ <a href='javascript:void()' id='activity-$project->id' class='btn btn-default btn-xs tip' title='Actividad'><i class='glyphicon glyphicon-comment'></i></a>
+ <a href='javascript:void()' id='edit-$project->id' class='btn btn-default btn-xs tip' title='Editar'><i class='glyphicon glyphicon-edit'></i></a>
+ <a href='javascript:void()' id='archive-$project->id' class='btn btn-default btn-xs tip' title='Archivar'><i class='glyphicon glyphicon-folder-close'></i></a>
+ <a href='javascript:void()' id='delete-$project->id' class='btn btn-default btn-xs tip' title='Eliminar'><i class='glyphicon glyphicon-trash'></i></a>
+ </div>
  <div id='edittaskform-$project_id'></div>
 </li>";
 echo <<<SSS

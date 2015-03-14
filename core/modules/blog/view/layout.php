@@ -48,16 +48,15 @@
 </div>
 
 <script src="res/jquery.min.js"></script>
-<script src="core/modules/<?php echo Module::$module; ?>/res/redactor/redactor.min.js"></script>
+<script type="text/javascript" src="res/bootstrap3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
   $(document).ready(
     function()
     {
-      $('#contenido').redactor();
+      $('.tip').tooltip();
     }
   );
   </script>
-<script type="text/javascript" src="res/bootstrap3/js/bootstrap.min.js"></script>
 
 </body>
 
