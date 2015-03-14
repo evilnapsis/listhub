@@ -71,11 +71,21 @@ print "<h2>".$project->name."</h2>";
     <input type="text" class="form-control" required name="name" id="exampleInputEmail1" placeholder="Tarea">
   </div>
   <div class="form-group">
+<div class="row">
+<div class="col-md-10">
+<div class="input-group">
+  <span class="input-group-addon"><i class='glyphicon glyphicon-tags'></i></span>
+  <input type="text" name="tags" class="form-control" placeholder="Etiquetas (separadas por comas)">
+</div>
+</div>
+<div class="col-md-2">
 <select name="priority_id" class="form-control">
 	<?php foreach(PriorityData::getAll() as $priority):?>
 		<option value="<?php echo $priority->id; ?>"><?php echo $priority->name; ?></option>
 	<?php endforeach; ?>
 </select>
+</div>
+</div>
   </div>
 
 <div class="row">
