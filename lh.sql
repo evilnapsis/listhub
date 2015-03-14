@@ -54,6 +54,9 @@ create table task (
 	foreign key (priority_id) references priority(id)
 );
 
+alter table task add column is_started_at datetime not null;
+alter table task add column is_finished_at datetime not null;
+
 create table tag(
 	id int not null auto_increment primary key,
 	name varchar(200) not null,

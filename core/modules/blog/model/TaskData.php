@@ -21,8 +21,8 @@ class TaskData {
 	}
 
 	public function add(){
-		$sql = "insert into ".self::$tablename." (name,priority_id,project_id,created_at) ";
-		 $sql .= "value (\"$this->name\",$this->priority_id,$this->project_id,$this->created_at)";
+		$sql = "insert into ".self::$tablename." (name,priority_id,project_id,is_started_at,created_at) ";
+		 $sql .= "value (\"$this->name\",$this->priority_id,$this->project_id,NOW(),$this->created_at)";
 		return Executor::doit($sql);
 	}
 
@@ -43,7 +43,7 @@ class TaskData {
 
 
 	public function finish(){
-		$sql = "update ".self::$tablename." set is_finish=1 where id=$this->id";
+		$sql = "update ".self::$tablename." set is_finish=1,is_finished_at=NOW() where id=$this->id";
 		Executor::doit($sql);
 	}
 
