@@ -44,16 +44,24 @@ foreach($tags as $t){
 $tags_str.= "<span class='label label-default'><i class='fa fa-tag'></i> ".$t->getTag()->name."</span>";
 }
 
+$project_id = $project->id;
  echo "<li class='task'>
 <span class='pull-right'>$priority->name</span>
  <span href='#' class='checkbox task'><label>"."<input type='checkbox' $checked id='check-".$project->id."'>".$project->name."</label>
 $tags_str
  </span>
- <div class='task-menu'><a href='' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a> <a href='#' id='delete-$project->id' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></div>
+ <div class='task-menu'><a href='javascript:void()' id='edit-$project->id' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-edit'></i></a> <a href='jsvascript:void()' id='delete-$project->id' class='btn btn-default btn-xs'><i class='glyphicon glyphicon-trash'></i></a></div>
+ <div id='edittaskform-$project_id'></div>
 </li>";
-$project_id = $project->id;
 echo <<<SSS
 <script>
+$("#edit-$project_id").click(function(e){
+		e.preventDefault();
+				$.post("edittask.php","task_id=$project_id&open=1", function(data){
+$("#edittaskform-$project_id").html(data);
+				});
+});
+
 $("#check-$project_id").change(function(){
 	var r = $(this).get(0).checked;
 	var action = "start";
@@ -85,6 +93,9 @@ echo "</ul>";
 // print_r($_GET);
 ?>
 <script>
+
+
+
 		$(".task .task-menu").hide();
 	$(".task").mouseover(function(){
 		$(this).find(".task-menu").show();
@@ -92,5 +103,6 @@ echo "</ul>";
 	$(".task").mouseout(function(){
 		$(this).find(".task-menu").hide();
 	});
+
 
 </script>

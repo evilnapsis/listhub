@@ -2,14 +2,6 @@
 class TaskData {
 	public static $tablename = "task";
 
-	public  function createForm(){
-		$form = new lbForm();
-	    $form->addField("title",array('type' => new lbInputText(array("label"=>"Nombre")),"validate"=>new lbValidator(array())));
-	    $form->addField("content",array('type' => new lbInputText(array("label"=>"Apellido")),"validate"=>new lbValidator(array())));
-	    $form->addField("image",array('type' => new lbInputText(array()),"validate"=>new lbValidator(array())));
-	    return $form;
-
-	}
 
 	public function TaskData(){
 		$this->title = "";
@@ -37,7 +29,7 @@ class TaskData {
 
 // partiendo de que ya tenemos creado un objecto TaskData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set title=\"$this->title\",content=\"$this->content\",image=\"$this->image\",is_public=\"$this->is_public\" where id=$this->id";
+		$sql = "update ".self::$tablename." set name=\"$this->name\",description=\"$this->description\",start_at=\"$this->start_at\",finish_at=\"$this->finish_at\",priority_id=\"$this->priority_id\" where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -61,6 +53,8 @@ class TaskData {
 			$data->id = $r['id'];
 			$data->name = $r['name'];
 			$data->description = $r['description'];
+			$data->start_at = $r['start_at'];
+			$data->finish_at = $r['finish_at'];
 			$data->project_id = $r['project_id'];
 			$data->created_at = $r['created_at'];
 			$data->is_finish = $r['is_finish'];
